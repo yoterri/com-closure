@@ -1,12 +1,13 @@
 <?php
 namespace Com\Component\Closure;
 
-use Com\LazyLoadInterface;
+use Com\Interfaces\LazyLoadInterface;
 use Com\Db\AbstractDb;
 use Com\Db\Sql\Select;
 use Com\ArrayUtils;
 use Com\Entity\AbstractEntity;
 use Com\Filter\ExtraTrim;
+use Com\Control\AbstractControl;
 
 use Zend\Db\ResultSet\AbstractResultSet;
 use Zend\Db\Sql\Literal;
