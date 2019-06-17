@@ -12,6 +12,7 @@ use Com\Control\AbstractControl;
 use Zend\Db\ResultSet\AbstractResultSet;
 use Zend\Db\Sql\Literal;
 use Zend\Db\Sql\Expression;
+use Zend\Db\Sql\Where;
 use Zend\Stdlib\Parameters;
 
 class Control extends AbstractControl implements LazyLoadInterface
@@ -121,8 +122,8 @@ class Control extends AbstractControl implements LazyLoadInterface
         $select->join(['sort' => $dbSort], new Expression('sort.node_id = t.id AND sort.group_id = ?', $this->groupId), [], 'left');
 
         #
-        $where = $this->getWhere()
-            ->equalTo('c1.parent_id', $nodeId)
+        $where = new Where();
+        $where->equalTo('c1.parent_id', $nodeId)
             ->equalTo('c1.group_id', $this->groupId);
     
         if(!$self)
@@ -347,8 +348,8 @@ class Control extends AbstractControl implements LazyLoadInterface
 
         $has = false;
 
-        $where = $this->getWhere()
-            ->equalTo('parent_id', $nodeId)
+        $where = new Where(); 
+        $where->equalTo('parent_id', $nodeId)
             ->equalTo('group_id', $this->groupId);
 
         $dbClosure = $this->getDbClosure();
@@ -358,8 +359,8 @@ class Control extends AbstractControl implements LazyLoadInterface
         $arr = ArrayUtils::pluck($childs, 'child_id');
         if($arr)
         {
-            $where = $this->getWhere()
-                ->in('parent_id', $arr)
+            $where = new Where(); 
+            $where->in('parent_id', $arr)
                 ->notEqualTo('child_id', $nodeId)
                 ->equalTo('group_id', $this->groupId);
 
@@ -469,8 +470,8 @@ class Control extends AbstractControl implements LazyLoadInterface
         $select->join(['c2' => $dbClosure], new Literal('c1.child_id = c2.child_id AND c2.parent_id <> c2.child_id'), [], 'left');
         $select->join(['sort' => $dbSort], new Expression('sort.node_id = t.id AND sort.group_id = ?', $this->groupId), [], 'left');
 
-        $where = $this->getWhere()
-            ->isNull('c2.child_id')
+        $where = new Where(); 
+        $where->isNull('c2.child_id')
             ->equalTo('c1.group_id', $this->groupId);
 
         $select->where($where);
@@ -614,8 +615,8 @@ class Control extends AbstractControl implements LazyLoadInterface
             #
             $childs = $this->_array_pluck($rowset, 'id');
 
-            $where = $this->getWhere()
-                ->in('id', $childs);
+            $where = new Where();
+            $where->in('id', $childs);
 
             $dbClosure->doDelete($where);
 
@@ -629,8 +630,8 @@ class Control extends AbstractControl implements LazyLoadInterface
             {
                 $childs = $this->_array_pluck($rowset, 'child_id');
 
-                $where = $this->getWhere()
-                    ->in('id', $childs);
+                $where = new Where();
+                $where->in('id', $childs);
 
                 $this->getDbNode()
                     ->doDelete($where);
@@ -668,8 +669,8 @@ class Control extends AbstractControl implements LazyLoadInterface
                 throw new \Exception('No id value was provided');
             }
 
-            $where = $this->getWhere()
-                ->equalTo('id', $entity->id);
+            $where = new Where();
+            $where->equalTo('id', $entity->id);
 
             $dbNode->doUpdate($entity->toArray(), $where);
 
@@ -1169,8 +1170,9 @@ class Control extends AbstractControl implements LazyLoadInterface
 
         if(!$isInt)
         {
-            $where = $this->getWhere()
-                ->equalTo('name', $group);
+
+            $where = new Where();
+            $where->equalTo('name', $group);
 
             $row = $dbGroup->findBy($where)->current();
             if(!$row)
@@ -1248,8 +1250,8 @@ class Control extends AbstractControl implements LazyLoadInterface
 
             if($dbGroup->findByPrimarykey($id))
             {
-                $where = $this->getWhere()
-                    ->equalTo('name', $name)
+                $where = new Where();
+                $where->equalTo('name', $name)
                     ->notEqualTo('id', $id);
 
                 $dbGroup = $this->getDbGroup();
