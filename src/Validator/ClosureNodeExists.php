@@ -5,7 +5,7 @@ namespace Com\Component\Closure\Validator;
 use Zend\Validator\AbstractValidator;
 use Zend\Db\Sql\Select;
 
-use Com\Component\Closure\Control\Closure;
+use Com\Component\Closure\Control;
 
 class ClosureNodeExists extends AbstractValidator
 {
@@ -17,7 +17,7 @@ class ClosureNodeExists extends AbstractValidator
     );
 
     /**
-     * @var Com\Component\Closure\Control\Closure
+     * @var Com\Component\Closure\Control
      */
     protected $cClosure;
 
@@ -26,15 +26,15 @@ class ClosureNodeExists extends AbstractValidator
 
 
     /**
-     * @param $closure Com\Component\Closure\Control\Closure
+     * @param $closure Com\Component\Closure\Control
      */
-    function setClosureControl(Closure $closure)
+    function setClosureControl(Control $closure)
     {
         $this->cClosure = $closure;
     }
 
     /**
-     * @return $closure Com\Component\Closure\Control\Closure
+     * @return $closure Com\Component\Closure\Control
      */
     function getClosureControl()
     {
