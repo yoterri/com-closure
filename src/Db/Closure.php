@@ -2,7 +2,7 @@
 namespace Com\Component\Closure\Db;
 
 use Com\Db\AbstractDb;
-use Com\LazyLoadInterface;
+use Com\Interfaces\LazyLoadInterface;
 
 class Closure extends AbstractDb implements LazyLoadInterface
 {

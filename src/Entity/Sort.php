@@ -3,7 +3,7 @@
 namespace Com\Component\Closure\Entity;
 
 use Com\Entity\AbstractEntity;
-use Com\LazyLoadInterface;
+use Com\Interfaces\LazyLoadInterface;
 
 class Sort extends AbstractEntity implements LazyLoadInterface
 {

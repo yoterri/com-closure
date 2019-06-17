@@ -2,7 +2,7 @@
 namespace Com\Component\Closure\Db;
 
 use Com\Db\AbstractDb;
-use Com\LazyLoadInterface;
+use Com\Interfaces\LazyLoadInterface;
 
 class Sort extends AbstractDb implements LazyLoadInterface
 {
