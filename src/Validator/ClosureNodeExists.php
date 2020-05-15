@@ -2,8 +2,8 @@
 
 namespace Com\Component\Closure\Validator;
 
-use Zend\Validator\AbstractValidator;
-use Zend\Db\Sql\Select;
+use Laminas\Validator\AbstractValidator;
+use Laminas\Db\Sql\Select;
 
 use Com\Component\Closure\Control;
 

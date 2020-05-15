@@ -9,11 +9,11 @@ use Com\Entity\AbstractEntity;
 use Com\Filter\ExtraTrim;
 use Com\Control\AbstractControl;
 
-use Zend\Db\ResultSet\AbstractResultSet;
-use Zend\Db\Sql\Literal;
-use Zend\Db\Sql\Expression;
-use Zend\Db\Sql\Where;
-use Zend\Stdlib\Parameters;
+use Laminas\Db\ResultSet\AbstractResultSet;
+use Laminas\Db\Sql\Literal;
+use Laminas\Db\Sql\Expression;
+use Laminas\Db\Sql\Where;
+use Laminas\Stdlib\Parameters;
 
 class Control extends AbstractControl implements LazyLoadInterface
 {
